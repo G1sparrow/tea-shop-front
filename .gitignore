@@ -1,0 +1,38 @@
+# 编辑器/系统自动生成文件
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 依赖包 / 第三方库
+node_modules/
+vendor/
+*.jar
+*.war
+
+# 构建输出 / 编译文件
+dist/
+build/
+out/
+target/
+*.exe
+*.dll
+
+# 日志文件
+logs/
+*.log
+npm-debug.log*
+
+# 环境变量 / 私密配置
+.env
+.env.local
+.env.production
+config.ini
+secret.json
+
+# 临时文件
+tmp/
+temp/
+*.tmp
