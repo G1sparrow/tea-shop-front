@@ -10,7 +10,6 @@ const routes = [
       // 所有文件路径同步加User前缀
       { path: '', name: 'Home', component: () => import('@/views/user/UserHome.vue') },
       { path: 'all-tea', name: 'AllTea', component: () => import('@/views/user/UserAllTea.vue') },
-      { path: 'tea-set', name: 'TeaSet', component: () => import('@/views/user/UserTeaSet.vue') },
       { path: 'about', name: 'About', component: () => import('@/views/user/UserAbout.vue') },
       { path: 'product/:id', name: 'ProductDetail', component: () => import('@/views/user/UserProductDetail.vue') },
       { path: 'cart', name: 'Cart', component: () => import('@/views/user/UserCart.vue') },
@@ -32,7 +31,6 @@ const routes = [
       { path: 'dashboard', name: 'AdminDashboard', component: () => import('@/views/admin/AdminDashboard.vue') },
       { path: 'products', name: 'AdminProducts', component: () => import('@/views/admin/AdminProducts.vue') },
       { path: 'orders', name: 'AdminOrders', component: () => import('@/views/admin/AdminOrders.vue') },
-      { path: 'tea-sets', name: 'AdminTeaSets', component: () => import('@/views/admin/AdminTeaSets.vue') },
     ]
   },
   { path: '/admin/login', name: 'AdminLogin', component: () => import('@/views/admin/AdminLogin.vue') },
@@ -44,27 +42,38 @@ const router = createRouter({
 })
 
 // 路由守卫
+// 路由守卫
 router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem('token');
+  
   // 检查是否访问管理端页面
   if (to.path.startsWith('/admin')) {
     // 排除登录页面
     if (to.path === '/admin/login') {
-      next() // 允许访问登录页面
-      return
+      next();
+      return;
     }
     
-    // 检查是否已登录（检查localStorage中的token）
-    const token = localStorage.getItem('token')
+    // 检查是否已登录
     if (token) {
-      next() // 已登录，允许访问
+      next();
     } else {
-      // 未登录，重定向到登录页面
-      next('/admin/login')
+      next('/admin/login');
     }
-  } else {
-    // 非管理端页面，直接允许访问
-    next()
+  } 
+  // 检查是否访问需要登录的用户端页面
+  else if (['/cart', '/user', '/order', '/pay'].includes(to.path)) {
+    if (token) {
+      next();
+    } else {
+      // 重定向到登录页面，登录后返回原页面
+      next({ path: '/login', query: { redirect: to.fullPath } });
+    }
+  } 
+  else {
+    // 其他页面直接允许访问
+    next();
   }
-})
+});
 
 export default router

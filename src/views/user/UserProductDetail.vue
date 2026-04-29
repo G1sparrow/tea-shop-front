@@ -52,14 +52,6 @@
               <label>耐泡度：</label>
               <span>{{ tasting.steepResistance }} 级</span>
             </div>
-            <div class="field">
-              <label>推荐茶具：</label>
-              <span>{{ tasting.suitableTeaSet }}</span>
-            </div>
-            <div class="field">
-              <label>冲泡建议：</label>
-              <span>{{ tasting.brewingSuggestion }}</span>
-            </div>
           </div>
         </div>
 
@@ -79,12 +71,6 @@
               <label>冲泡时间：</label>
               <span>{{ brewingGuide.brewingTime }} 秒</span>
             </div>
-            <div class="field">
-              <label>推荐茶具：</label>
-              <span>{{ brewingGuide.teaSetRecommendation }}</span>
-            </div>
-
-            
           </div>
         </div>
       </div>

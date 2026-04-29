@@ -6,7 +6,6 @@
       <nav>
         <router-link to="/">首页</router-link>
         <router-link to="/all-tea">茶叶</router-link>
-        <router-link to="/tea-set">茶器</router-link>
         <router-link to="/about">关于</router-link>
       </nav>
       <div class="icons">

@@ -31,12 +31,15 @@
             <span>商品管理</span>
           </template>
           <el-menu-item index="/admin/products">
-            <el-icon><Leaf /></el-icon>
-            <template #title>茶叶管理</template>
+            <template #title>
+              <span style="margin-left: 16px;">茶叶管理</span>
+            </template>
           </el-menu-item>
-          <el-menu-item index="/admin/tea-sets">
-            <el-icon><Cup /></el-icon>
-            <template #title>茶器管理</template>
+          <!-- 新增：茶叶种类管理 -->
+          <el-menu-item index="/admin/tea-categories">
+            <template #title>
+              <span style="margin-left: 16px;">茶叶种类管理</span>
+            </template>
           </el-menu-item>
         </el-sub-menu>
 
@@ -44,8 +47,6 @@
           <el-icon><ShoppingCartFull /></el-icon>
           <template #title>订单管理</template>
         </el-menu-item>
-
-
 
         <el-menu-item index="5">
           <el-icon><Setting /></el-icon>
@@ -103,7 +104,7 @@ import { useRouter, useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { 
   DataBoard, Goods, ShoppingCartFull, User, Setting, 
-  SwitchButton, Bell, UserFilled 
+  SwitchButton, Bell, UserFilled, Menu 
 } from '@element-plus/icons-vue'
 import apiService from '@/api/index.js'
 
@@ -121,7 +122,7 @@ const adminInfo = ref({
 const breadcrumbMap = {
   'AdminDashboard': '仪表盘',
   'AdminProducts': '茶叶管理',
-  'AdminTeaSets': '茶器管理',
+  'AdminTeaCategories': '茶叶种类管理', // 新增映射
   'AdminOrders': '订单管理'
 }
 
@@ -132,7 +133,7 @@ const breadcrumbName = computed(() => {
 
 // 监听路由变化，展开对应菜单
 watch(() => route.name, (newName) => {
-  if (newName === 'AdminProducts') {
+  if (newName === 'AdminProducts' || newName === 'AdminTeaCategories') {
     (document.querySelector('.el-sub-menu[index="2"]')?.$el || {}).open = true
   }
 })
