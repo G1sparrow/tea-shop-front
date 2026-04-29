@@ -4,7 +4,7 @@
     <div class="sidebar" :class="{ collapsed: isCollapsed }">
       <!-- 侧边栏头部 -->
       <div class="sidebar-header">
-        <div class="logo" v-if="!isCollapsed">茶器商城管理系统</div>
+        <div class="logo" v-if="!isCollapsed">茶叶管理系统</div>
         <div class="logo collapsed-logo" v-else>茶管</div>
         <el-button icon="el-icon-fold" class="collapse-btn" @click="isCollapsed = !isCollapsed"></el-button>
       </div>
@@ -36,7 +36,7 @@
             </template>
           </el-menu-item>
           <!-- 新增：茶叶种类管理 -->
-          <el-menu-item index="/admin/tea-categories">
+          <el-menu-item index="/admin/categories">
             <template #title>
               <span style="margin-left: 16px;">茶叶种类管理</span>
             </template>
@@ -93,7 +93,7 @@
       </div>
 
       <!-- 底部版权 -->
-      <div class="footer">© 2026 茶器商城管理系统 版权所有</div>
+      <div class="footer">© 2026 茶叶管理系统 版权所有</div>
     </div>
   </div>
 </template>
